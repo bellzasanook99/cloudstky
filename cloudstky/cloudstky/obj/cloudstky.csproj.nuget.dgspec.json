@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\s5801073810058\\source\\repos\\cloudstky\\cloudstky\\cloudstky.csproj": {}
+    "D:\\Develop\\CodeGit\\cloudstky\\cloudstky\\cloudstky\\cloudstky\\cloudstky.csproj": {}
   },
   "projects": {
-    "C:\\Users\\s5801073810058\\source\\repos\\cloudstky\\cloudstky\\cloudstky.csproj": {
+    "D:\\Develop\\CodeGit\\cloudstky\\cloudstky\\cloudstky\\cloudstky\\cloudstky.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\s5801073810058\\source\\repos\\cloudstky\\cloudstky\\cloudstky.csproj",
+        "projectUniqueName": "D:\\Develop\\CodeGit\\cloudstky\\cloudstky\\cloudstky\\cloudstky\\cloudstky.csproj",
         "projectName": "cloudstky",
-        "projectPath": "C:\\Users\\s5801073810058\\source\\repos\\cloudstky\\cloudstky\\cloudstky.csproj",
+        "projectPath": "D:\\Develop\\CodeGit\\cloudstky\\cloudstky\\cloudstky\\cloudstky\\cloudstky.csproj",
         "packagesPath": "C:\\Users\\s5801073810058\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\s5801073810058\\source\\repos\\cloudstky\\cloudstky\\obj\\",
+        "outputPath": "D:\\Develop\\CodeGit\\cloudstky\\cloudstky\\cloudstky\\cloudstky\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
