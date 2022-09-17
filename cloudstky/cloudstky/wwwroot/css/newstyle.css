@@ -1,0 +1,41 @@
+﻿body {
+}
+
+.gapcol {
+    column-gap: 20px;
+}
+.coverx
+{
+ width:100%;
+ background-color:aqua;
+}
+.fixh {
+    height: 820px;
+    background-color: aqua;
+    padding: 100px 20px;
+}
+
+.fixfooter {
+    height: 380px;
+    background-color: #efcebd;
+   
+}
+
+.imgBackground {
+    background-image: url('https://images.unsplash.com/photo-1516617442634-75371039cb3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    min-height: 965px;
+  /*  opacity: 0.5;*/
+    position: relative;
+
+}
+
+
+.LoginBox {
+    position: absolute;
+    margin: 20px;
+    max-width: 400px;
+    padding: 100px 20px;
+    background-color: white;
+}

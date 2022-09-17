@@ -29,12 +29,40 @@ namespace cloudstky.Controllers
 
         public IActionResult Index()
         {
-            var tblAccount = _userService.GetAccount();
+            //var tblAccount = _userService.GetAccount();
 
-            IEnumerable<TblAccount> test = tblAccount.Result;
+            //IEnumerable<TblAccount> test = tblAccount.Result;
+
+            
+            return View();
+        }
+
+
+
+        public IActionResult Login()
+        {
+          //  var tblAccount = _userService.GetAccount();
+
+       //     IEnumerable<TblAccount> test = tblAccount.Result;
+
 
             return View();
         }
+
+
+        public IActionResult Register()
+        {
+           // var tblAccount = _userService.GetAccount();
+
+       //     IEnumerable<TblAccount> test = tblAccount.Result;
+
+
+            return View();
+        }
+
+
+
+
 
         public IActionResult Privacy()
         {
