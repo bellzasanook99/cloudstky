@@ -1,6 +1,10 @@
+using cloudstky.Models;
+using cloudstky.Service.Interface;
+using cloudstky.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +28,12 @@ namespace cloudstky
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+         
+            services.AddDbContextPool<CloudStokyDBContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ConnectionBase")));
+
+
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
