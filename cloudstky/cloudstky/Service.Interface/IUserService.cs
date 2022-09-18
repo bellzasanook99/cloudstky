@@ -1,6 +1,11 @@
-﻿namespace cloudstky.Service.Interface
+﻿using cloudstky.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace cloudstky.Service.Interface
 {
     public interface IUserService
     {
+        Task<IEnumerable<TblAccount>> GetAccount();
     }
 }
