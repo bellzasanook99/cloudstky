@@ -8,7 +8,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAnBPNF3Xjt0SYWcjf/YgYRgAAAAACAAAAAAAQZgAAAAEAACAAAABTxfpNROrTGxJZCcqyiPvgGjgQ1c6TNRBDpYwCR6t0UAAAAAAOgAAAAAIAACAAAAAGTVGlAcrVkLbsDH5BVVQl6uujixKq7zLOv9jayeX5VyAAAAC3ZO+rQAkVIzF2/hidaQdMlnaVTUzvF0DDt6BJW0aTv0AAAADK2uK2uvLK67VPEyEaw8jrzTysB1i/VzHBc0P9Y9YLp82npOTPEuIRsdck0sCKSWsc0Amhj4IRGMyDOtVmdTz6</EncryptedPassword>
     <_PublishTargetUrl>ftp://192.168.1.15</_PublishTargetUrl>
-    <History>False|2022-09-18T06:44:01.1780419Z;True|2022-09-18T13:32:34.1847124+07:00;</History>
+    <History>True|2022-09-18T06:46:18.7742968Z;False|2022-09-18T13:44:01.1780419+07:00;True|2022-09-18T13:32:34.1847124+07:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
@@ -18,25 +18,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/17/2022 22:00:18</publishTime>
     </File>
     <File Include="cloudstky.deps.json">
-      <publishTime>09/18/2022 13:43:54</publishTime>
+      <publishTime>09/18/2022 13:46:11</publishTime>
     </File>
     <File Include="cloudstky.dll">
-      <publishTime>09/18/2022 13:32:05</publishTime>
+      <publishTime>09/18/2022 13:46:10</publishTime>
     </File>
     <File Include="cloudstky.exe">
-      <publishTime>09/18/2022 13:43:53</publishTime>
+      <publishTime>09/18/2022 13:46:10</publishTime>
     </File>
     <File Include="cloudstky.pdb">
-      <publishTime>09/18/2022 13:43:53</publishTime>
+      <publishTime>09/18/2022 13:46:10</publishTime>
     </File>
     <File Include="cloudstky.runtimeconfig.json">
-      <publishTime>09/18/2022 13:32:07</publishTime>
+      <publishTime>09/18/2022 13:46:11</publishTime>
     </File>
     <File Include="cloudstky.Views.dll">
-      <publishTime>09/18/2022 13:32:06</publishTime>
+      <publishTime>09/18/2022 13:46:10</publishTime>
     </File>
     <File Include="cloudstky.Views.pdb">
-      <publishTime>09/18/2022 13:43:54</publishTime>
+      <publishTime>09/18/2022 13:46:10</publishTime>
     </File>
     <File Include="Microsoft.Data.SqlClient.dll">
       <publishTime>08/26/2020 06:24:48</publishTime>
@@ -129,7 +129,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/15/2019 15:37:42</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>09/18/2022 13:43:54</publishTime>
+      <publishTime>09/18/2022 13:46:11</publishTime>
     </File>
     <File Include="wwwroot/css/newstyle.css">
       <publishTime>09/18/2022 04:37:32</publishTime>

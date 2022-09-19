@@ -111,3 +111,4 @@ D:\Develop\CodeGit\cloudstky\cloudstky\cloudstky\cloudstky\obj\Debug\net5.0\clou
 D:\Develop\CodeGit\cloudstky\cloudstky\cloudstky\cloudstky\obj\Debug\net5.0\cloudstky.genruntimeconfig.cache
 D:\Develop\CodeGit\cloudstky\cloudstky\cloudstky\cloudstky\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
 D:\Develop\CodeGit\cloudstky\cloudstky\cloudstky\cloudstky\obj\Debug\net5.0\Razor\Views\Home\Register.cshtml.g.cs
+D:\Develop\CodeGit\cloudstky\cloudstky\cloudstky\cloudstky\obj\Debug\net5.0\cloudstky.csproj.AssemblyReference.cache
