@@ -19,5 +19,10 @@ namespace cloudstky.Services
         {
             return await CloudStokyDBContext.TblAccounts.ToListAsync();
         }
+
+        public async Task<TblAccount> GetAccount(MdlLogin mdlLogin)
+        {
+            return await CloudStokyDBContext.TblAccounts.FirstOrDefaultAsync(m => ( m.AccEmail == mdlLogin.Username && m.AccPwd == mdlLogin.Password));
+        }
     }
 }

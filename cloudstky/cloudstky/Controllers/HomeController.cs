@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using cloudstky.Service.Interface;
+using Microsoft.AspNetCore.Http;
 
 namespace cloudstky.Controllers
 {
@@ -49,7 +50,38 @@ namespace cloudstky.Controllers
             return View();
         }
 
+        const string SessionName = "Name";
 
+        [HttpPost]
+        public IActionResult Login(MdlLogin mdlLogin)
+        
+        {
+              var tblAccount = _userService.GetAccount(mdlLogin).Result;
+
+            //     IEnumerable<TblAccount> test = tblAccount.Result;
+            if(tblAccount != null)
+            {
+
+                //Message =  tblAccount.AccName ;
+                HttpContext.Session.SetString(SessionName, tblAccount.AccName);
+                return RedirectToAction("ProdMange", "Home", new { AccountRef = tblAccount.AccName });
+            }
+
+            return View();
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("Name");
+            //HttpContext.Session.Clear();
+            // var tblAccount = _userService.GetAccount();
+
+            //     IEnumerable<TblAccount> test = tblAccount.Result;
+
+            // Message = null;
+
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult Register()
         {
            // var tblAccount = _userService.GetAccount();
@@ -60,6 +92,16 @@ namespace cloudstky.Controllers
             return View();
         }
 
+
+        public IActionResult ProdMange(string AccName)
+        {
+            // var tblAccount = _userService.GetAccount();
+
+            //     IEnumerable<TblAccount> test = tblAccount.Result;
+
+
+            return View(AccName);
+        }
 
 
 

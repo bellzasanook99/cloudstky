@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Login";
 }
+@using cloudstky.Models
 
 <div class="container-fluid imgBackground">
 
@@ -9,15 +10,20 @@
         <div class="shadow p-4">
             <h5>Log in to your account</h5>
 
-            <div class="input-group mb-3">
-             
-                <input type="text" class="form-control" aria-label="Default" placeholder="Username" aria-describedby="inputGroup-sizing-default">
-            </div>
+            @using (Html.BeginForm())
+            {
+        <div class="input-group mb-3">
+            
+            <input type="text" required class="form-control" aria-label="Default" placeholder="Username" name="Username" aria-describedby="inputGroup-sizing-default">
+
+        </div>
 
             <div class="input-group mb-3">
-             
-                <input type="password" class="form-control" aria-label="Default" placeholder="Password" aria-describedby="inputGroup-sizing-default">
+
+                <input type="password" required class="form-control" aria-label="Default" placeholder="Password" name="Password" aria-describedby="inputGroup-sizing-default">
             </div>
+            <button class="btn btn-primary btn-lg" type="submit">เข้าสู่ระบบ</button>
+            }
         </div>
     </div>
 
