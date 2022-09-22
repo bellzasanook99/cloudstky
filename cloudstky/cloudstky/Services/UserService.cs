@@ -24,5 +24,18 @@ namespace cloudstky.Services
         {
             return await CloudStokyDBContext.TblAccounts.FirstOrDefaultAsync(m => ( m.AccEmail == mdlLogin.Username && m.AccPwd == mdlLogin.Password));
         }
+
+
+        public async Task<int> SaveAccount(MdlRegister mdlRegister)
+        {
+
+            TblAccount tblAccount = new TblAccount();
+            tblAccount.AccName = mdlRegister.AccName;
+            tblAccount.AccPwd = mdlRegister.AccPwd;
+            tblAccount.AccEmail = mdlRegister.AccEmail;
+
+
+            return await CloudStokyDBContext.TblAccounts.Add(tblAccount).Context.SaveChangesAsync();
+        }
     }
 }

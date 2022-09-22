@@ -9,5 +9,7 @@ namespace cloudstky.Service.Interface
         Task<IEnumerable<TblAccount>> GetAccount();
 
         Task<TblAccount> GetAccount(MdlLogin mdlLogin);
+
+        Task<int> SaveAccount(MdlRegister mdlRegister);
     }
 }

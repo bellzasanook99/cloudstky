@@ -50,7 +50,7 @@
 }
 
 .imgBackground {
-    background-image: url('https://images.unsplash.com/photo-1516617442634-75371039cb3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
+  /*  background-image: url('https://images.unsplash.com/photo-1516617442634-75371039cb3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');*/
     background-repeat: no-repeat;
     background-size: 100% auto;
     min-height: 965px;
@@ -66,4 +66,20 @@
     max-width: 400px;
     padding: 100px 20px;
     background-color: white;
+}
+
+
+.Requireup {
+    width: 100%;
+    margin: 25px 0px 0px 0px;
+}
+
+    .Requireup span {
+        color: red;
+    }
+
+.form-login {
+    display: block;
+    text-align: -webkit-center;
+    /* margin-left: 100px;*/
 }

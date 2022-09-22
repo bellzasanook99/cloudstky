@@ -42,21 +42,27 @@ namespace cloudstky.Controllers
 
         public IActionResult Login()
         {
-          //  var tblAccount = _userService.GetAccount();
+            //  var tblAccount = _userService.GetAccount();
 
-       //     IEnumerable<TblAccount> test = tblAccount.Result;
+            //     IEnumerable<TblAccount> test = tblAccount.Result;
+            MdlLogin mdlLogin = new MdlLogin();
 
-
-            return View();
+            return View(mdlLogin);
         }
 
         const string SessionName = "Name";
 
         [HttpPost]
         public IActionResult Login(MdlLogin mdlLogin)
-        
         {
-              var tblAccount = _userService.GetAccount(mdlLogin).Result;
+
+                if (!ModelState.IsValid)
+                {
+                    return View(mdlLogin);
+                }
+
+
+                var tblAccount = _userService.GetAccount(mdlLogin).Result;
 
             //     IEnumerable<TblAccount> test = tblAccount.Result;
             if(tblAccount != null)
@@ -84,12 +90,30 @@ namespace cloudstky.Controllers
         }
         public IActionResult Register()
         {
-           // var tblAccount = _userService.GetAccount();
+            // var tblAccount = _userService.GetAccount();
 
-       //     IEnumerable<TblAccount> test = tblAccount.Result;
+            //     IEnumerable<TblAccount> test = tblAccount.Result;
+            MdlRegister mdlRegister = new MdlRegister();
 
+            return View(mdlRegister);
+        }
 
-            return View();
+        [HttpPost]
+        public IActionResult Register(MdlRegister  mdlRegister)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(mdlRegister);
+            }
+
+            var state = _userService.SaveAccount(mdlRegister).Result;
+            if(state == 1)
+            {
+                HttpContext.Session.SetString(SessionName, mdlRegister.AccName);
+                return RedirectToAction("ProdMange", "Home", new { AccountRef = mdlRegister.AccName });
+            }
+
+            return View(mdlRegister);
         }
 
 
