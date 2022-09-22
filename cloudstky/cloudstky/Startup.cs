@@ -29,7 +29,12 @@ namespace cloudstky
         {
             services.AddControllersWithViews();
 
-         
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);//You can set Time   
+            });
+
             services.AddDbContextPool<CloudStokyDBContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ConnectionBase")));
 
 
@@ -52,9 +57,15 @@ namespace cloudstky
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
+
+
+
+           
+
 
             app.UseEndpoints(endpoints =>
             {

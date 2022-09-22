@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using cloudstky.Service.Interface;
+using Microsoft.AspNetCore.Http;
 
 namespace cloudstky.Controllers
 {
@@ -41,25 +42,89 @@ namespace cloudstky.Controllers
 
         public IActionResult Login()
         {
-          //  var tblAccount = _userService.GetAccount();
+            //  var tblAccount = _userService.GetAccount();
 
-       //     IEnumerable<TblAccount> test = tblAccount.Result;
+            //     IEnumerable<TblAccount> test = tblAccount.Result;
+            MdlLogin mdlLogin = new MdlLogin();
 
+            return View(mdlLogin);
+        }
+
+        const string SessionName = "Name";
+
+        [HttpPost]
+        public IActionResult Login(MdlLogin mdlLogin)
+        {
+
+                if (!ModelState.IsValid)
+                {
+                    return View(mdlLogin);
+                }
+
+
+                var tblAccount = _userService.GetAccount(mdlLogin).Result;
+
+            //     IEnumerable<TblAccount> test = tblAccount.Result;
+            if(tblAccount != null)
+            {
+
+                //Message =  tblAccount.AccName ;
+                HttpContext.Session.SetString(SessionName, tblAccount.AccName);
+                return RedirectToAction("ProdMange", "Home", new { AccountRef = tblAccount.AccName });
+            }
 
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("Name");
+            //HttpContext.Session.Clear();
+            // var tblAccount = _userService.GetAccount();
 
+            //     IEnumerable<TblAccount> test = tblAccount.Result;
+
+            // Message = null;
+
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult Register()
         {
-           // var tblAccount = _userService.GetAccount();
+            // var tblAccount = _userService.GetAccount();
 
-       //     IEnumerable<TblAccount> test = tblAccount.Result;
+            //     IEnumerable<TblAccount> test = tblAccount.Result;
+            MdlRegister mdlRegister = new MdlRegister();
 
-
-            return View();
+            return View(mdlRegister);
         }
 
+        [HttpPost]
+        public IActionResult Register(MdlRegister  mdlRegister)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(mdlRegister);
+            }
+
+            var state = _userService.SaveAccount(mdlRegister).Result;
+            if(state == 1)
+            {
+                HttpContext.Session.SetString(SessionName, mdlRegister.AccName);
+                return RedirectToAction("ProdMange", "Home", new { AccountRef = mdlRegister.AccName });
+            }
+
+            return View(mdlRegister);
+        }
+
+
+        public IActionResult ProdMange(string AccName)
+        {
+
+
+
+
+            return View(AccName);
+        }
 
 
 
