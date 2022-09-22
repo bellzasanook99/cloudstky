@@ -119,9 +119,8 @@ namespace cloudstky.Controllers
 
         public IActionResult ProdMange(string AccName)
         {
-            // var tblAccount = _userService.GetAccount();
 
-            //     IEnumerable<TblAccount> test = tblAccount.Result;
+
 
 
             return View(AccName);
