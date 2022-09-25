@@ -1,0 +1,91 @@
+﻿@model IEnumerable<cloudstky.Models.TblProduct>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Products</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                    <label class="custom-control-label" for="customCheck1"></label>
+                </div>
+            </th>
+            <th>
+                ลำดับ
+            </th>
+            <th>
+                ภาพสินค้า
+            </th>
+            <th>
+                ชื่อสินค้า
+            </th>
+            <th>
+                รายละเอียด
+            </th>
+            <th>
+                ประเภท
+            </th>
+            <th>
+                จำนวน
+            </th>
+            <th>
+                หน่วย
+            </th>
+            <th>
+                ราคา
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                        <label class="custom-control-label" for="customCheck1"></label>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccName)
+                </td>
+                <td>
+                     <img src="" class="img-fluid img-thumbnail" alt="">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdRemark)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifyBy)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
