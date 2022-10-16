@@ -1,9 +1,9 @@
+
 using cloudstky.Models;
 using cloudstky.Service.Interface;
 using cloudstky.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,10 +35,23 @@ namespace cloudstky
                 options.IdleTimeout = TimeSpan.FromMinutes(60);//You can set Time   
             });
 
+
+
+
             services.AddDbContextPool<CloudStokyDBContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ConnectionBase")));
 
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
+        
 
             services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IJwtUtils, JwtUtils>();
+
+            services.AddSwaggerGen();
+          
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,12 +73,19 @@ namespace cloudstky
             app.UseSession();
             app.UseRouting();
 
+        //    app.UseAuthorization();
+
+         //   app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseMiddleware<JwtMiddleware>();
 
 
-           
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
 
+            });
 
             app.UseEndpoints(endpoints =>
             {
@@ -73,6 +93,8 @@ namespace cloudstky
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }

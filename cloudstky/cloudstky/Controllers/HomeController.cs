@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 using cloudstky.Service.Interface;
 using Microsoft.AspNetCore.Http;
+using cloudstky.Services;
 
 namespace cloudstky.Controllers
 {
@@ -16,16 +17,19 @@ namespace cloudstky.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+   
 
     
         IUserService _userService { get; }
 
-    //    public List<TblAccount> _tblAccounts;
+        IJwtUtils _jwtUtils { get; set; }
+        //    public List<TblAccount> _tblAccounts;
 
-        public HomeController(ILogger<HomeController> logger, IUserService userService)
+        public HomeController(ILogger<HomeController> logger, IUserService userService, IJwtUtils jwtUtils)
         {
             _logger = logger;
             _userService = userService;
+            _jwtUtils = jwtUtils;
         }
 
         public IActionResult Index()
@@ -37,7 +41,6 @@ namespace cloudstky.Controllers
             
             return View();
         }
-
 
 
         public IActionResult Login()
@@ -61,16 +64,22 @@ namespace cloudstky.Controllers
                     return View(mdlLogin);
                 }
 
+           
 
-                var tblAccount = _userService.GetAccount(mdlLogin).Result;
+            var tblAccount = _userService.GetAccount(mdlLogin).Result;
 
+           string tokenkey = _jwtUtils.GenerateToken(tblAccount);
+     //       tblAccount.Token = tokenkey;
             //     IEnumerable<TblAccount> test = tblAccount.Result;
-            if(tblAccount != null)
+
+            if (tblAccount != null)
             {
 
                 //Message =  tblAccount.AccName ;
-                HttpContext.Session.SetString(SessionName, tblAccount.AccName);
-                return RedirectToAction("ProdMange", "Home", new { AccountRef = tblAccount.AccName });
+                //   HttpContext.Session.SetString(SessionName, tblAccount.AccName);
+                //return RedirectToAction("ProdMange", "Home", new { AccountRef = tblAccount.AccName });
+
+                return RedirectToAction("ProdMange", "Home");
             }
 
             return View();
@@ -117,14 +126,24 @@ namespace cloudstky.Controllers
         }
 
 
-        public IActionResult ProdMange(string AccName)
+        [Authorize]
+        public IActionResult ProdMange()
         {
 
 
 
 
-            return View(AccName);
+            return View();
         }
+
+        //public IActionResult ProdMange(string AccName)
+        //{
+
+
+
+
+        //    return View(AccName);
+        //}
 
 
 
