@@ -37,18 +37,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right gapcol">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">หน้าแรก</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="#about">เกี่ยวกับเรา</a>
-                        </li>
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark" href="#service">บริการ</a>
-                        </li>*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="#footer">ติดต่อเรา</a>
-                        </li>
+                     
 
 
                         @if (user == null)
@@ -71,7 +60,28 @@
     <div class="container">
         <main role="main" class="pb-3">
 
-            @RenderBody()
+
+
+            <div class="fixh-1">
+                <div class="sidebar">
+                    <a  href="@Url.Action("Profile", "Home")">ข้อมูลทั่วไป</a>
+                    <a  href="@Url.Action("ProdMange", "Home")">จัดการสินค้า</a>
+
+                </div>
+
+                <div class="content">
+                    @RenderBody()
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+         
 
         </main>
     </div>

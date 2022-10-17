@@ -14,6 +14,7 @@
 }
 
 
+
     .coverx-item:nth-child(1) {
    
        
@@ -50,7 +51,7 @@
 
 .fixfooter {
     height: 380px;
-    background-color: #efcebd;
+   
    
 }
 
@@ -82,6 +83,15 @@
     .Requireup span {
         color: red;
     }
+
+.Requireup label:after {
+    content: "*";
+    color: red;
+}
+.form-group .required .control-label:after {
+    content: "*";
+    color: red;
+}
 
 .form-login {
     display: block;

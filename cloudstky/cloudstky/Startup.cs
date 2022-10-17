@@ -4,6 +4,7 @@ using cloudstky.Service.Interface;
 using cloudstky.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -73,12 +74,25 @@ namespace cloudstky
             app.UseSession();
             app.UseRouting();
 
-        //    app.UseAuthorization();
 
-         //   app.UseAuthentication();
+
+
+            app.Use(async (context, next) =>
+            {
+                var JWToken = context.Session.GetString("JWToken");
+                if (!string.IsNullOrEmpty(JWToken))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + JWToken);
+                }
+                await next();
+            });
+
+
             app.UseAuthorization();
 
             app.UseMiddleware<JwtMiddleware>();
+
+
 
 
             app.UseSwagger();

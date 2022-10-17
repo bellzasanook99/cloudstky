@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_LayoutMange.cshtml";
+}
+
+@using Microsoft.AspNetCore.Http;
+
+@{
+    var user = (TblAccount)Context.Items["User"];
+}
+
+<div>
+    <h4>@user.AccName</h4>
+    <h4>@user.AccTel</h4>
+    <h4>@user.CreatedTime</h4>
+</div>

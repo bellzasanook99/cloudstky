@@ -71,6 +71,8 @@ namespace cloudstky.Service.Interface
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
+         //       context.Items["User"] = userService.GetById(userId.Value);
+
                 // return user id from JWT token if validation successful
                 return userId;
             }

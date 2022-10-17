@@ -8,54 +8,71 @@
 
 
 <div class="d-flex align-items-center justify-content-center vh-100">
-    <div class="shadow p-lg-5 w-75">
+    <div class="bg-transparent p-lg-5 w-75">
+
+
 
         @using (Html.BeginForm())
         {
-        <div class="input-group mb-3">
+           
 
-            <div class="Requireup">
+            <div class="input-group mb-3">
 
-                @Html.EditorFor(model => Model.AccName, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
-                @Html.ValidationMessageFor(model => Model.AccName)
+            
+                <div class="Requireup">
+                    <label>Username</label>
+                    @Html.EditorFor(model => Model.AccName, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
+                    @Html.ValidationMessageFor(model => Model.AccName)
+                </div>
+
             </div>
 
-        </div>
-        <div class="input-group mb-3">
+            <div class="input-group mb-3">
 
-            <div class="Requireup">
+                <div class="Requireup">
+                    <label>Password</label>
+                    @Html.PasswordFor(model => Model.AccPwd, new { @class = "form-control", @placeholder = "Password" })
+                    @Html.ValidationMessageFor(model => Model.AccPwd)
+                </div>
 
-                @Html.PasswordFor(model => Model.AccPwd, new { @class = "form-control", @placeholder = "Password" })
-                @Html.ValidationMessageFor(model => Model.AccPwd)
             </div>
 
-        </div>
+            <div class="input-group mb-3">
 
-        <div class="input-group mb-3">
+                <div class="Requireup">
+                    <label>Password</label>
+                    @Html.PasswordFor(model => Model.AccCPwd, new { @class = "form-control", @placeholder = "Password" })
+                    @Html.ValidationMessageFor(model => Model.AccCPwd)
+                </div>
 
-            <div class="Requireup">
-                @Html.PasswordFor(model => Model.AccCPwd, new { @class = "form-control", @placeholder = "Password" })
-                @Html.ValidationMessageFor(model => Model.AccCPwd)
             </div>
 
-        </div>
+            <div class="input-group mb-3">
 
-        <div class="input-group mb-3">
+                <div class="Requireup">
+                    <label>PhoneNumber</label>
+                    @Html.EditorFor(model => Model.AccTel, new { htmlAttributes = new { @class = "form-control", placeholder = "PhoneNumber" } })
+                    @Html.ValidationMessageFor(model => Model.AccTel)
+                </div>
 
-            <div class="Requireup">
-
-                @Html.EditorFor(model => Model.AccEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
-                @Html.ValidationMessageFor(model => Model.AccEmail)
             </div>
 
-        </div>
+            <div class="input-group mb-3">
+
+                <div class="Requireup">
+                    <label>Email</label>
+                    @Html.EditorFor(model => Model.AccEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                    @Html.ValidationMessageFor(model => Model.AccEmail)
+                </div>
+
+            </div>
 
 
-        <div class="input-group mb-3">
-            <button class="btn btn-outline-success w-100" type="submit">สมัครสมาชิก</button>
-        </div>
+            <div class="input-group mb-3">
+                <button class="btn btn-outline-success w-100" type="submit">สมัครสมาชิก</button>
+            </div>
 
-                                                                }
+        }
     </div>
 
-</div>
+        </div>

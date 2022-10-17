@@ -69,16 +69,11 @@ namespace cloudstky.Controllers
             var tblAccount = _userService.GetAccount(mdlLogin).Result;
 
            string tokenkey = _jwtUtils.GenerateToken(tblAccount);
-     //       tblAccount.Token = tokenkey;
-            //     IEnumerable<TblAccount> test = tblAccount.Result;
+
 
             if (tblAccount != null)
             {
-
-                //Message =  tblAccount.AccName ;
-                //   HttpContext.Session.SetString(SessionName, tblAccount.AccName);
-                //return RedirectToAction("ProdMange", "Home", new { AccountRef = tblAccount.AccName });
-
+                HttpContext.Session.SetString("JWToken", "Bearer " + tokenkey);         
                 return RedirectToAction("ProdMange", "Home");
             }
 
@@ -87,8 +82,8 @@ namespace cloudstky.Controllers
 
         public IActionResult Logout()
         {
-            HttpContext.Session.Remove("Name");
-            //HttpContext.Session.Clear();
+           // HttpContext.Session.Remove("Name");
+            HttpContext.Session.Clear();
             // var tblAccount = _userService.GetAccount();
 
             //     IEnumerable<TblAccount> test = tblAccount.Result;
@@ -118,8 +113,24 @@ namespace cloudstky.Controllers
             var state = _userService.SaveAccount(mdlRegister).Result;
             if(state == 1)
             {
-                HttpContext.Session.SetString(SessionName, mdlRegister.AccName);
-                return RedirectToAction("ProdMange", "Home", new { AccountRef = mdlRegister.AccName });
+
+                MdlLogin mdlLogin = new MdlLogin();
+                mdlLogin.Username = mdlRegister.AccName;
+                mdlLogin.Password = mdlLogin.Password;
+                var tblAccount = _userService.GetAccount(mdlLogin).Result;
+
+                string tokenkey = _jwtUtils.GenerateToken(tblAccount);
+
+
+                if (tblAccount != null)
+                {
+
+        
+                    HttpContext.Session.SetString("JWToken", "Bearer " + tokenkey);
+
+                    return RedirectToAction("ProdMange", "Home");
+                }
+
             }
 
             return View(mdlRegister);
@@ -135,6 +146,18 @@ namespace cloudstky.Controllers
 
             return View();
         }
+
+        [Authorize]
+        public IActionResult Profile()
+        {
+
+
+
+
+            return View();
+        }
+
+        
 
         //public IActionResult ProdMange(string AccName)
         //{
