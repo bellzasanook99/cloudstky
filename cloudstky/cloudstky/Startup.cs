@@ -46,6 +46,7 @@ namespace cloudstky
         
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProductsService, ProductsService>();
 
             services.AddScoped<IJwtUtils, JwtUtils>();
 

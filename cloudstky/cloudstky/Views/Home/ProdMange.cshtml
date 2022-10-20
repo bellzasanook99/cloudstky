@@ -2,7 +2,10 @@
 @{
     ViewData["Title"] = "ProdMange";
     Layout = "~/Views/Shared/_LayoutMange.cshtml";
+
 }
+
+
 
 <div class="form-group">
 
@@ -11,11 +14,15 @@
     <div class="row">
         <div class="col-md-4">
             <button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal" onclick="GetEditModal('AddItem', null)">Add Product</button>
+            @*<button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal">Add Product</button>*@
         </div>
         <div class="col-md-4">
 
+         
+
         </div>
         <div class="col-md-4">
+
 
         </div>
     </div>
@@ -24,7 +31,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modaltitle">Modal title</h5>
@@ -33,38 +40,109 @@
                 </button>
             </div>
             <div class="modal-body" id="modalbody">
-                ...
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline-primary">Save changes</button>
+                <button type="button" class="btn btn-outline-primary" id="btnSaveConfig">Save changes</button>
             </div>
         </div>
     </div>
 </div>
 <script>
 
+    function SaveData(_mode) {
+
+        switch (_mode) {
+            case 'AddItem':
+
+
+                var ProdName_ = document.getElementById("ProdName").value;
+                var ProdRemark_ = document.getElementById("ProdRemark").value;
+                var Price_ = document.getElementById("Price").value;
+                var ProdUnit_ = document.getElementById("ProdUnit").value;
+                var ProdUnitType_ = document.getElementById("ProdUnitType").value;
+                var AccName_ = document.getElementById("AccName").value;
+                var _file1 = $('#file1')[0].files;
+
+                var formData = new FormData();
+
+                for (var x = 0; x < _file1.length; x++) {
+                    formData.append("fromFile", _file1[x]);
+                }
+             /*   formData.append("data", JSON.stringify(tbldata));*/
+                formData.append("ProdName", $('#ProdName').val());
+                formData.append("ProdRemark", $('#ProdRemark').val());
+                formData.append("Price", $('#Price').val());
+                formData.append("ProdUnit", $('#ProdUnit').val());
+                formData.append("ProdUnitType", $('#ProdUnitType').val());
+               
+                formData.append("AccName", $('#AccName').val());
+            
+                      $.ajax({
+                          type: "POST",
+
+                    url: "@Url.Action("ProdMange", "Home")",
+
+                          processData: false,
+                          contentType: false,
+                          data: formData,
+                          success: function (data) {
+                            /*  debugger;*/
+                              window.location.reload();
+                        //if (data.Result) {
+
+                                  
+                        //        window.location.reload();
+
+                        //} else {
+                        //    swal("Error!!!", data.Msg, "error");
+                        //}
+                    }
+                });
+
+
+
+
+
+
+                break;
+        }
+    }
+
+
     function GetEditModal(_mode, _value) {
-        debugger;
+
 
         var _model;
         var modal = document.getElementById("myModal");
         var divModalTitle = $('#modaltitle');
         var divModalBody = $('#modalbody');
 
-       /* var btnSaveConfig = $('#btnSaveConfig');*/
+        var btnSaveConfig = $('#btnSaveConfig');
+
+        btnSaveConfig.attr("onclick", "SaveData('" + _mode + "')");
         divModalBody.html('');
         divModalTitle.html('');
+
+
         switch (_mode) {
 
             case 'AddItem':
                 divModalTitle.html('Add Item');
 
-                     html = `
- <div class="input-group mb-3">
-    <input class ="form-control" />
- </div>
-  `;
+
+
+                html =  `  @{
+
+                @Html.Partial("_ListTemp")
+
+
+            }
+
+`
+
                 divModalBody.html(html);
                 break;
         }

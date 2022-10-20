@@ -12,8 +12,10 @@
 
     <div class="d-flex align-items-center justify-content-center vh-100">
         <div class="bg-transparent p-lg-5 w-75">
-            <h3 class="text-white">Log in to your account</h3>
-
+            <h3 class="text-black-50">Log in to your account</h3>
+            <div class="Requireup">
+                @Html.ValidationMessage("Error1")
+            </div>
             @using (Html.BeginForm())
             {
             <div class="input-group mb-3 form-login">

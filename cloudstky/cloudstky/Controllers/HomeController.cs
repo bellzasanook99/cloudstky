@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using cloudstky.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using cloudstky.Services;
+using Newtonsoft.Json;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace cloudstky.Controllers
 {
@@ -17,19 +20,22 @@ namespace cloudstky.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-   
+        private readonly IHostingEnvironment _hostingEnvironme;
 
-    
-        IUserService _userService { get; }
+
+             IUserService _userService { get; }
+        IProductsService _productsService { get; }
 
         IJwtUtils _jwtUtils { get; set; }
         //    public List<TblAccount> _tblAccounts;
 
-        public HomeController(ILogger<HomeController> logger, IUserService userService, IJwtUtils jwtUtils)
+        public HomeController(ILogger<HomeController> logger, IHostingEnvironment environment, IUserService userService, IJwtUtils jwtUtils,IProductsService productsService)
         {
             _logger = logger;
             _userService = userService;
             _jwtUtils = jwtUtils;
+            _productsService = productsService;
+            _hostingEnvironme = environment;
         }
 
         public IActionResult Index()
@@ -68,13 +74,18 @@ namespace cloudstky.Controllers
 
             var tblAccount = _userService.GetAccount(mdlLogin).Result;
 
-           string tokenkey = _jwtUtils.GenerateToken(tblAccount);
+         
 
 
             if (tblAccount != null)
             {
+                string tokenkey = _jwtUtils.GenerateToken(tblAccount);
                 HttpContext.Session.SetString("JWToken", "Bearer " + tokenkey);         
                 return RedirectToAction("ProdMange", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("Error1", "No Register");
             }
 
             return View();
@@ -116,7 +127,7 @@ namespace cloudstky.Controllers
 
                 MdlLogin mdlLogin = new MdlLogin();
                 mdlLogin.Username = mdlRegister.AccName;
-                mdlLogin.Password = mdlLogin.Password;
+                mdlLogin.Password = mdlRegister.AccPwd;
                 var tblAccount = _userService.GetAccount(mdlLogin).Result;
 
                 string tokenkey = _jwtUtils.GenerateToken(tblAccount);
@@ -140,11 +151,51 @@ namespace cloudstky.Controllers
         [Authorize]
         public IActionResult ProdMange()
         {
+            var mtbUnitType = _productsService.GetUnitTypes().Result;
 
-
-
-
+            // MdlParam mdlParam = new MdlParam();
+            //   mdlParam.mtbUnit = mtbUnitType;
+            // ViewData["mtbUnitType"] = mtbUnitType;
+            ViewBag.UnitData = mtbUnitType;
             return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public JsonResult ProdMange([FromForm]FileModel file)
+        {
+            bool Result = false;
+            string Msg = "";
+            try
+            {
+                if (file.FromFile != null)
+                {
+                    Guid id = Guid.NewGuid();
+
+                    string webRootPath = _hostingEnvironme.WebRootPath + "\\" + file.AccName;
+                    string contentRootPath = _hostingEnvironme.ContentRootPath;
+
+                    if (!Directory.Exists(webRootPath))
+                    {
+                        Directory.CreateDirectory(webRootPath);
+                    }
+                    string path = "";
+                    path = Path.Combine(webRootPath, id.ToString());
+                    //var path = Path.Combine(pathx, id.ToString());
+                    foreach (IFormFile formFile in file.FromFile)
+                    {
+                        using (Stream stream = new FileStream(path, FileMode.Create))
+                        {
+                            formFile.CopyTo(stream);
+                        }
+                    }
+                }
+                Result = true;
+            }
+            catch(Exception ex) { }
+            //var tblProduct = (TblProduct)file.tblProduct;
+
+            return Json(new { Result, Msg });
         }
 
         [Authorize]

@@ -20,5 +20,10 @@ namespace cloudstky.Services
         {
             return await CloudStokyDBContext.TblProducts.ToListAsync();
         }
+
+        public async Task<List<MtbUnitType>> GetUnitTypes()
+        {
+            return await CloudStokyDBContext.MtbUnitTypes.ToListAsync();
+        }
     }
 }

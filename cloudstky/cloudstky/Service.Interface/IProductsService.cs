@@ -7,5 +7,7 @@ namespace cloudstky.Service.Interface
     public interface IProductsService
     {
         Task<List<TblProduct>> Products();
+
+        Task<List<MtbUnitType>> GetUnitTypes();
     }
 }
