@@ -8,7 +8,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAnBPNF3Xjt0SYWcjf/YgYRgAAAAACAAAAAAAQZgAAAAEAACAAAABTxfpNROrTGxJZCcqyiPvgGjgQ1c6TNRBDpYwCR6t0UAAAAAAOgAAAAAIAACAAAAAGTVGlAcrVkLbsDH5BVVQl6uujixKq7zLOv9jayeX5VyAAAAC3ZO+rQAkVIzF2/hidaQdMlnaVTUzvF0DDt6BJW0aTv0AAAADK2uK2uvLK67VPEyEaw8jrzTysB1i/VzHBc0P9Y9YLp82npOTPEuIRsdck0sCKSWsc0Amhj4IRGMyDOtVmdTz6</EncryptedPassword>
     <_PublishTargetUrl>ftp://192.168.1.15</_PublishTargetUrl>
-    <History>True|2022-10-18T19:54:02.5400171Z;True|2022-10-19T02:41:57.6455850+07:00;True|2022-10-19T01:11:31.1021016+07:00;False|2022-10-19T01:10:56.4070267+07:00;True|2022-10-19T00:55:14.7176360+07:00;True|2022-10-19T00:51:09.5282328+07:00;False|2022-10-19T00:50:15.3182286+07:00;False|2022-10-19T00:49:54.3417144+07:00;True|2022-10-18T02:16:54.7713884+07:00;False|2022-10-18T02:16:20.0400538+07:00;True|2022-09-22T22:37:48.5450328+07:00;False|2022-09-22T22:37:29.4581443+07:00;True|2022-09-22T22:32:45.8740199+07:00;True|2022-09-20T02:24:24.9784428+07:00;True|2022-09-18T13:46:18.7742968+07:00;False|2022-09-18T13:44:01.1780419+07:00;True|2022-09-18T13:32:34.1847124+07:00;</History>
+    <History>True|2022-10-23T20:39:45.8183040Z;False|2022-10-23T11:45:00.0080758+07:00;True|2022-10-21T02:19:10.7747889+07:00;True|2022-10-19T02:54:02.5400171+07:00;True|2022-10-19T02:41:57.6455850+07:00;True|2022-10-19T01:11:31.1021016+07:00;False|2022-10-19T01:10:56.4070267+07:00;True|2022-10-19T00:55:14.7176360+07:00;True|2022-10-19T00:51:09.5282328+07:00;False|2022-10-19T00:50:15.3182286+07:00;False|2022-10-19T00:49:54.3417144+07:00;True|2022-10-18T02:16:54.7713884+07:00;False|2022-10-18T02:16:20.0400538+07:00;True|2022-09-22T22:37:48.5450328+07:00;False|2022-09-22T22:37:29.4581443+07:00;True|2022-09-22T22:32:45.8740199+07:00;True|2022-09-20T02:24:24.9784428+07:00;True|2022-09-18T13:46:18.7742968+07:00;False|2022-09-18T13:44:01.1780419+07:00;True|2022-09-18T13:32:34.1847124+07:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
@@ -21,25 +21,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2018 01:50:12</publishTime>
     </File>
     <File Include="cloudstky.deps.json">
-      <publishTime>10/19/2022 02:53:52</publishTime>
+      <publishTime>10/24/2022 03:39:24</publishTime>
     </File>
     <File Include="cloudstky.dll">
-      <publishTime>10/19/2022 02:53:52</publishTime>
+      <publishTime>10/24/2022 03:39:23</publishTime>
     </File>
     <File Include="cloudstky.exe">
-      <publishTime>10/19/2022 02:53:52</publishTime>
+      <publishTime>10/24/2022 03:39:23</publishTime>
     </File>
     <File Include="cloudstky.pdb">
-      <publishTime>10/19/2022 02:53:52</publishTime>
+      <publishTime>10/24/2022 03:39:23</publishTime>
     </File>
     <File Include="cloudstky.runtimeconfig.json">
       <publishTime>10/18/2022 02:15:57</publishTime>
     </File>
     <File Include="cloudstky.Views.dll">
-      <publishTime>10/19/2022 02:53:52</publishTime>
+      <publishTime>10/24/2022 03:39:23</publishTime>
     </File>
     <File Include="cloudstky.Views.pdb">
-      <publishTime>10/19/2022 02:53:52</publishTime>
+      <publishTime>10/24/2022 03:39:23</publishTime>
     </File>
     <File Include="cs/Microsoft.CodeAnalysis.CSharp.resources.dll">
       <publishTime>11/12/2020 07:15:14</publishTime>
@@ -345,7 +345,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/12/2020 07:16:28</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>10/19/2022 02:53:52</publishTime>
+      <publishTime>10/24/2022 03:39:24</publishTime>
+    </File>
+    <File Include="wwwroot/admin/16416448-90d3-446c-8807-1e8c4f70d7d5">
+      <publishTime>10/21/2022 02:14:42</publishTime>
+    </File>
+    <File Include="wwwroot/admin/73906001-2698-4689-bdb4-b7a8f0ece6a0">
+      <publishTime>10/21/2022 02:08:51</publishTime>
+    </File>
+    <File Include="wwwroot/admin/9b6f89b2-3f54-4172-8c89-19de3bf26500">
+      <publishTime>10/21/2022 02:14:04</publishTime>
+    </File>
+    <File Include="wwwroot/admin/a66f1e1e-677b-421b-94b2-76d3fb2d3619">
+      <publishTime>10/21/2022 02:10:22</publishTime>
+    </File>
+    <File Include="wwwroot/admin/c244abc9-e70d-4a41-a34b-d1d1e1e00a3c">
+      <publishTime>10/21/2022 02:17:38</publishTime>
+    </File>
+    <File Include="wwwroot/admin/e7f8198c-c9e4-4806-be11-efb151bd9a01">
+      <publishTime>10/21/2022 02:15:46</publishTime>
     </File>
     <File Include="wwwroot/css/newstyle.css">
       <publishTime>10/18/2022 00:34:12</publishTime>
@@ -457,6 +475,117 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="wwwroot/lib/jquery/LICENSE.txt">
       <publishTime>09/13/2022 23:10:15</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/02722642-78ea-4848-8980-6e2af49f963b">
+      <publishTime>10/23/2022 23:57:43</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/048b8611-629c-41ca-8c2d-c330315751dc.png">
+      <publishTime>10/24/2022 03:14:48</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/07b6395e-bde7-4cfc-9c63-b02fa0e49c61.png">
+      <publishTime>10/24/2022 00:48:39</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/09c047a9-3050-4b9b-a9ea-05bf9a73e3b3.png">
+      <publishTime>10/24/2022 03:16:10</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/0b488558-120c-4dad-b6e0-079d69b8a4be.png">
+      <publishTime>10/24/2022 01:36:40</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/104f1189-8914-4fb8-acaf-d15cce57b839.png">
+      <publishTime>10/24/2022 00:18:07</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/1062dda8-d8a9-4631-9b26-d6ee98472356.png">
+      <publishTime>10/24/2022 00:50:27</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/12209bb0-dfd8-4808-a655-17c0918d54a6.png">
+      <publishTime>10/24/2022 01:40:48</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/1e71f263-25a9-4e0c-96fb-9e33a13b0093.png">
+      <publishTime>10/24/2022 01:40:48</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/24bef9d5-a51a-4cef-b050-c161058b9b53.png">
+      <publishTime>10/24/2022 00:39:37</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/2981ed3e-05ce-4faf-9c47-ce1ad40c9021.png">
+      <publishTime>10/24/2022 00:19:30</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/41cc566e-7924-4057-8334-005dd30c49dd.png">
+      <publishTime>10/24/2022 00:21:23</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/43c6f3ca-2b4e-4703-880c-40675adb00ff">
+      <publishTime>10/23/2022 19:38:40</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/4e1b3b50-dad4-452c-8731-260c68bed1a5">
+      <publishTime>10/23/2022 21:55:11</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/4e840115-c05d-480a-ada3-0f7c27a482e9">
+      <publishTime>10/23/2022 23:59:49</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/58843cba-8090-4ce0-831a-d76f23de594d.png">
+      <publishTime>10/24/2022 00:49:32</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/5bc04c75-c464-44f3-b5cb-e630acb6ab6b">
+      <publishTime>10/24/2022 00:00:51</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/5cc040a5-2ba4-4ef6-8889-59f17b0d599b.png">
+      <publishTime>10/24/2022 00:55:30</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/69e58c8b-9a06-4f5e-878d-9dacf8fbb35e.png">
+      <publishTime>10/24/2022 03:13:35</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/74ac40d3-fcf7-40f0-91fa-1e5e6bbb8d09.png">
+      <publishTime>10/24/2022 00:02:56</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/765e58c4-2e5f-494f-b3c8-0f674091ee91.png">
+      <publishTime>10/24/2022 03:14:48</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/7f964522-2912-444c-b90a-85a27dbc89c6.png">
+      <publishTime>10/24/2022 03:13:35</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/8069894c-fbf9-42fa-96fd-af7e76847102.png">
+      <publishTime>10/24/2022 00:56:48</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/9bda7c6c-3d01-4416-b232-dfd4cc4cb350">
+      <publishTime>10/23/2022 21:55:26</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/9d7217cb-b81e-4d33-ae1d-2c5b880da6f2.png">
+      <publishTime>10/24/2022 00:22:31</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/b2d14dbe-be68-43e1-ad64-75dc4a166f4c.png">
+      <publishTime>10/24/2022 00:56:16</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/b3199d44-d164-4481-be16-b4bbcd4181da.png">
+      <publishTime>10/24/2022 03:13:35</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/c165f857-cfc9-4a95-8e85-116c4b3065f5">
+      <publishTime>10/23/2022 23:50:45</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/c1c12690-460d-4598-a686-f4b59bd53a5c.png">
+      <publishTime>10/24/2022 00:38:01</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/c6a38828-b246-47c1-b122-c595f03a7292.png">
+      <publishTime>10/24/2022 00:41:52</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/c9f189f9-2f4b-48b9-8d65-265d361ad848.png">
+      <publishTime>10/24/2022 00:55:58</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/da3cc2f3-8128-4911-acf6-823b4821641c.png">
+      <publishTime>10/24/2022 00:16:36</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/dc3bffef-7a0d-4f90-87cc-fb5d86a5df0b.png">
+      <publishTime>10/24/2022 01:40:48</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/e1ddccdd-4179-4201-855a-04993be1ec78.png">
+      <publishTime>10/24/2022 00:36:31</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/e6ddc7e3-cc29-41f4-ba9c-49ac8897a996.png">
+      <publishTime>10/24/2022 01:40:48</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/e701626b-59ae-4751-b928-3f27ed743bf4.png">
+      <publishTime>10/24/2022 00:23:43</publishTime>
+    </File>
+    <File Include="wwwroot/StoreImage/admin/febb4824-c423-4b36-a4d5-abcb6210da55">
+      <publishTime>10/23/2022 21:55:23</publishTime>
     </File>
     <File Include="zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll">
       <publishTime>11/12/2020 07:15:14</publishTime>

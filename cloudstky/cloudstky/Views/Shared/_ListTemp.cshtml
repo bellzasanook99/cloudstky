@@ -10,29 +10,36 @@
 
 <div class="row">
     <div class="col">
-        <input id="AccName" class="form-control" placeholder="Acc Name" hidden value="@user.AccName" required /> <br />
-        <input id="ProdName" class="form-control" placeholder="Product Name" required /> <br />
-        <textarea id="ProdRemark" class="form-control" placeholder="Description"></textarea><br />
-        <input class="form-control-file" id="file1" type="file" multiple />
-    </div>
-    <div class="col">
-        @*<select class="form-select" aria-label="Default select example">
+        <input id="AccName" class="form-control" placeholder="Acc Name" hidden value="@user.AccName" />
+
+
+
+         
+            <input id="ProdName" class="form-control" placeholder="Product Name"/>
+      
+         
+            <br />
+            <textarea id="ProdRemark" class="form-control" placeholder="Description"></textarea><br />
+            <input class="form-control-file" id="FromFile" type="file" multiple />
+        </div>
+        <div class="col">
+            @*<select class="form-select" aria-label="Default select example">
                 <option selected>Catagory</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
             </select> <br>*@
-        <input id="Price" class="form-control" placeholder="Price" required /> <br />
-        <input id="ProdUnit" class="form-control" placeholder="Number" required /> <br />
-        <select id="ProdUnitType" class="form-select" aria-label="Default select example">
+            <input id="Price" class="form-control" placeholder="Price" /> <br />
+            <input id="ProdUnit" class="form-control" placeholder="Number" /> <br />
+            <select id="ProdUnitType" class="form-select" aria-label="Default select example">
 
-            @foreach (var data in ViewBag.UnitData)
+                @foreach (var data in ViewBag.UnitData)
             {
                 <option value="@data.Id">@data.Amount</option>
             }
-        </select>
-        <br>
+            </select>
+            <br>
+        </div>
     </div>
-</div>
 
 

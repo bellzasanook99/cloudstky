@@ -8,7 +8,7 @@ namespace cloudstky.Models
     public partial class TblProdGallery
     {
         public int Id { get; set; }
-        public int? ProdId { get; set; }
+        public string ProdCode { get; set; }
         public string ImageName { get; set; }
         public string ImagePath { get; set; }
         public bool? IsActive { get; set; }

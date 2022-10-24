@@ -25,5 +25,39 @@ namespace cloudstky.Services
         {
             return await CloudStokyDBContext.MtbUnitTypes.ToListAsync();
         }
+
+        public async Task<int> SaveProduct(TblProduct  tblProduct,List<TblProdGallery> tblProdGalleries)
+        {
+
+
+            CloudStokyDBContext.TblProducts.Add(tblProduct);
+           
+         
+            foreach(TblProdGallery tblProdGallery in tblProdGalleries)
+            {
+                CloudStokyDBContext.TblProdGalleries.Add(tblProdGallery);
+            }
+           
+
+
+            return await CloudStokyDBContext.SaveChangesAsync();
+        }
+
+
+        public async Task<List<TblProduct>> GetProducts()
+        {
+
+
+
+            return await CloudStokyDBContext.TblProducts.ToListAsync();
+        }
+
+        public async Task<List<TblProdGallery>> GetProdGallerys()
+        {
+
+
+
+            return await CloudStokyDBContext.TblProdGalleries.ToListAsync();
+        }
     }
 }

@@ -13,6 +13,8 @@ using cloudstky.Services;
 using Newtonsoft.Json;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using static cloudstky.Services.UtilityService;
+using System.Transactions;
 
 namespace cloudstky.Controllers
 {
@@ -138,7 +140,7 @@ namespace cloudstky.Controllers
 
         
                     HttpContext.Session.SetString("JWToken", "Bearer " + tokenkey);
-
+                    //HttpContext.Session.SetString("AccName", tblAccount.AccName);
                     return RedirectToAction("ProdMange", "Home");
                 }
 
@@ -151,11 +153,36 @@ namespace cloudstky.Controllers
         [Authorize]
         public IActionResult ProdMange()
         {
+            HttpContext context = HttpContext;
+            var user = (TblAccount)context.Items["User"];
             var mtbUnitType = _productsService.GetUnitTypes().Result;
 
-            // MdlParam mdlParam = new MdlParam();
-            //   mdlParam.mtbUnit = mtbUnitType;
-            // ViewData["mtbUnitType"] = mtbUnitType;
+
+            var getprod = _productsService.GetProducts().Result.Where(m=> ( m.AccName == user.AccName && m.IsActive == true)).ToList();
+
+
+            List<MdlProdview> prodviews = new List<MdlProdview>();
+
+            foreach(TblProduct tblProduct in getprod)
+            {
+                var getimage = _productsService.GetProdGallerys().Result.Where(m => m.ProdCode == tblProduct.ProdCode).ToList();
+
+                prodviews.Add(new MdlProdview
+                {
+                    tblProduct = tblProduct,
+                    tblProdGalleries = getimage
+
+                });
+            }
+
+            //var GroupedByFirst = getprod.GroupBy(m => m.ProdCode);
+            //foreach (var group in GroupedByFirst)
+            //{
+
+
+            //}
+
+            ViewBag.Prodviews = prodviews;
             ViewBag.UnitData = mtbUnitType;
             return View();
         }
@@ -166,13 +193,34 @@ namespace cloudstky.Controllers
         {
             bool Result = false;
             string Msg = "";
+            if (!ModelState.IsValid)
+            {
+           IEnumerable<Error>  errors =     ModelStateExtensions.AllErrors(ModelState);
+
+
+                return Json(new { Result, errors });
+            }
+
             try
             {
                 if (file.FromFile != null)
                 {
                     Guid id = Guid.NewGuid();
+                    TblProduct tblProduct = new TblProduct();
+                    tblProduct.AccName = file.AccName;
+                    tblProduct.ProdName = file.ProdName;
+                    tblProduct.Price = file.Price;
+                    tblProduct.ProdType = file.ProdType;
+                    tblProduct.ProdUnitType = file.ProdUnitType;
+                    tblProduct.ProdUnit = file.ProdUnit;
+                    tblProduct.ProdCode = id.ToString();
+                    tblProduct.ProdRemark = file.ProdRemark;
+                    HttpContext context = HttpContext;
+                    var user = (TblAccount)context.Items["User"];
+                    tblProduct.CreatedBy = user.AccName;
 
-                    string webRootPath = _hostingEnvironme.WebRootPath + "\\" + file.AccName;
+                 
+                    string webRootPath = _hostingEnvironme.WebRootPath + "\\StoreImage\\" + file.AccName;
                     string contentRootPath = _hostingEnvironme.ContentRootPath;
 
                     if (!Directory.Exists(webRootPath))
@@ -180,15 +228,29 @@ namespace cloudstky.Controllers
                         Directory.CreateDirectory(webRootPath);
                     }
                     string path = "";
-                    path = Path.Combine(webRootPath, id.ToString());
-                    //var path = Path.Combine(pathx, id.ToString());
+                    List<TblProdGallery> tblProdGalleries = new List<TblProdGallery>(); 
                     foreach (IFormFile formFile in file.FromFile)
                     {
+                        id = Guid.NewGuid();
+                        path = Path.Combine(webRootPath, id.ToString() + ".png");
+
                         using (Stream stream = new FileStream(path, FileMode.Create))
                         {
                             formFile.CopyTo(stream);
                         }
+
+                        tblProdGalleries.Add(new TblProdGallery 
+                        { 
+                            ImageName = id.ToString() + ".png",
+                             ImagePath = webRootPath,
+                            ProdCode = tblProduct.ProdCode
+
+                        });
+
                     }
+
+                    var state = _productsService.SaveProduct(tblProduct, tblProdGalleries);
+
                 }
                 Result = true;
             }

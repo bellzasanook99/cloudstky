@@ -8,7 +8,7 @@ namespace cloudstky.Models
 {
     public partial class CloudStokyDBContext : DbContext
     {
-     
+    
 
         public CloudStokyDBContext(DbContextOptions<CloudStokyDBContext> options)
             : base(options)
@@ -24,11 +24,11 @@ namespace cloudstky.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-//            if (!optionsBuilder.IsConfigured)
-//            {
+            if (!optionsBuilder.IsConfigured)
+            {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//                optionsBuilder.UseSqlServer("Data Source=192.168.1.15;Initial Catalog=CloudStokyDB;Persist Security Info=True;User ID=sa;Password=Admin1234!");
-//            }
+//                optionsBuilder.UseSqlServer("Server= 192.168.1.15;user id= sa;pwd=Admin1234!; Database=CloudStokyDB;MultipleActiveResultSets=true;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -160,27 +160,29 @@ namespace cloudstky.Models
 
             modelBuilder.Entity<TblProdGallery>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("tblProdGallery");
 
                 entity.Property(e => e.CreatedDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
                 entity.Property(e => e.ImageName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ImagePath)
-                    .HasMaxLength(50)
+                    .HasMaxLength(1000)
                     .IsUnicode(false);
+
+                entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ProdCode)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TblProduct>(entity =>
@@ -211,11 +213,17 @@ namespace cloudstky.Models
 
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
 
+                entity.Property(e => e.ProdCode)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ProdName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ProdRemark).HasColumnType("text");
+
+                entity.Property(e => e.ProdType).HasDefaultValueSql("((1))");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -9,5 +9,13 @@ namespace cloudstky.Service.Interface
         Task<List<TblProduct>> Products();
 
         Task<List<MtbUnitType>> GetUnitTypes();
+
+        Task<int> SaveProduct(TblProduct tblProduct,List<TblProdGallery> tblProdGalleries);
+
+    
+      
+        Task<List<TblProduct>> GetProducts();
+
+        Task<List<TblProdGallery>> GetProdGallerys();
     }
 }

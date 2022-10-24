@@ -6,6 +6,8 @@
 }
 
 
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
 
 <div class="form-group">
 
@@ -17,15 +19,51 @@
             @*<button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal">Add Product</button>*@
         </div>
         <div class="col-md-4">
-
-         
-
         </div>
         <div class="col-md-4">
 
 
         </div>
     </div>
+
+    <table class="table table-hover table-responsive-sm table-bordered mt-3" style="background-color:whitesmoke">
+        <thead class="thead-light">
+            <tr>
+                <th hidden>ProdCode</th>
+                <th>ชื่อสินค้า</th>
+                <th>คำบรรยาย</th>
+                <th>ราคา</th>
+                <th>วัน เวลา</th>
+                <th>แก้ไข</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            @foreach (var data in ViewBag.Prodviews)
+            {
+
+            <tr>
+
+                <td hidden>@data.tblProduct.ProdCode</td>
+                @*<td> <img class="newsimg" src="@data.NewsPath" /> </td>*@
+                <td>@data.tblProduct.ProdName</td>
+                <td>@data.tblProduct.ProdRemark</td>
+                <td>@data.tblProduct.Price</td>
+                <td>@data.tblProduct.CreatedTime</td>
+
+
+
+
+                <td align="center">
+                    <input type="button" class="btn btn-danger" data-toggle="modal" onclick="GetEditModal('EditProd', '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(data)).ToString().Replace("\"", "dbq")')" data-target="#myModal" value="แก้ไข" />
+                    @*<input type="button" class="btn btn-danger" data-toggle="modal" onclick="GetEditModal('EditProd', '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(data)).ToString()')" data-target="#myModal" value="แก้ไข" />*@
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
 </div>
 
 
@@ -64,7 +102,7 @@
                 var ProdUnit_ = document.getElementById("ProdUnit").value;
                 var ProdUnitType_ = document.getElementById("ProdUnitType").value;
                 var AccName_ = document.getElementById("AccName").value;
-                var _file1 = $('#file1')[0].files;
+                var _file1 = $('#FromFile')[0].files;
 
                 var formData = new FormData();
 
@@ -77,9 +115,9 @@
                 formData.append("Price", $('#Price').val());
                 formData.append("ProdUnit", $('#ProdUnit').val());
                 formData.append("ProdUnitType", $('#ProdUnitType').val());
-               
+
                 formData.append("AccName", $('#AccName').val());
-            
+
                       $.ajax({
                           type: "POST",
 
@@ -89,17 +127,29 @@
                           contentType: false,
                           data: formData,
                           success: function (data) {
-                            /*  debugger;*/
-                              window.location.reload();
-                        //if (data.Result) {
 
-                                  
-                        //        window.location.reload();
+                              debugger;
+                              if (data.result)
+                              {
 
-                        //} else {
-                        //    swal("Error!!!", data.Msg, "error");
-                        //}
-                    }
+                                  window.location.reload();
+                              }
+                        else {
+
+                            $.each(data.errors, function (index, value) {
+
+
+
+                                var req = document.getElementById(value.key)
+                                debugger;
+                                req.style.borderStyle = "solid";
+                                req.style.borderColor = "red";
+
+                               /* alert(value.message);*/
+                            });
+                        }
+                          }
+
                 });
 
 
@@ -119,6 +169,26 @@
         var modal = document.getElementById("myModal");
         var divModalTitle = $('#modaltitle');
         var divModalBody = $('#modalbody');
+      
+    
+
+
+        var str = _value.replace(/dbq/g, '"');
+        str = str.replace(/(?:\r\n|\r|\n)/g, ' ');
+   
+        if (_value != '') {
+
+        _model = JSON.parse(str);
+        }
+
+
+   
+        debugger;
+
+      
+
+       
+        debugger;
 
         var btnSaveConfig = $('#btnSaveConfig');
 
@@ -137,6 +207,26 @@
                 html =  `  @{
 
                 @Html.Partial("_ListTemp")
+
+
+            }
+
+`
+
+                divModalBody.html(html);
+                break;
+            case 'EditProd':
+                divModalTitle.html('EditProd');
+
+
+
+                html = `
+<a>`+ _model.tblProduct.ProdName +`</a>
+
+@{
+
+
+                @Html.Partial("EditProd");
 
 
             }
