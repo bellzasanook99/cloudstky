@@ -5,9 +5,17 @@
 
 }
 
+@using Microsoft.AspNetCore.Http;
+
+@{
+    var user = (TblAccount)Context.Items["User"];
+}
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
+
+
+
 
 <div class="form-group">
 
@@ -15,8 +23,8 @@
     <h3 class="mt-3 mb-3">Product Mangement</h3>
     <div class="row">
         <div class="col-md-4">
-            <button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal" onclick="GetEditModal('AddItem', null)">Add Product</button>
-            @*<button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal">Add Product</button>*@
+            <button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal" onclick="GetEditModal('AddItem', '')">Add Product</button>
+        
         </div>
         <div class="col-md-4">
         </div>
@@ -33,6 +41,8 @@
                 <th>ชื่อสินค้า</th>
                 <th>คำบรรยาย</th>
                 <th>ราคา</th>
+                <th>จำนวน</th>
+                <th>หน่วย</th>
                 <th>วัน เวลา</th>
                 <th>แก้ไข</th>
             </tr>
@@ -43,23 +53,25 @@
             @foreach (var data in ViewBag.Prodviews)
             {
 
-            <tr>
+                <tr>
 
-                <td hidden>@data.tblProduct.ProdCode</td>
-                @*<td> <img class="newsimg" src="@data.NewsPath" /> </td>*@
-                <td>@data.tblProduct.ProdName</td>
-                <td>@data.tblProduct.ProdRemark</td>
-                <td>@data.tblProduct.Price</td>
-                <td>@data.tblProduct.CreatedTime</td>
+                    <td hidden>@data.tblProduct.ProdCode</td>
+                    @*<td> <img class="newsimg" src="@data.NewsPath" /> </td>*@
+                    <td>@data.tblProduct.ProdName</td>
+                    <td>@data.tblProduct.ProdRemark</td>
+                    <td>@data.tblProduct.Price</td>
+                    <td>@data.tblProduct.ProdUnit</td>
+                    <td>@data.tblProduct.ProdType</td>
+                    <td>@data.tblProduct.CreatedTime</td>
 
 
 
 
-                <td align="center">
-                    <input type="button" class="btn btn-danger" data-toggle="modal" onclick="GetEditModal('EditProd', '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(data)).ToString().Replace("\"", "dbq")')" data-target="#myModal" value="แก้ไข" />
-                    @*<input type="button" class="btn btn-danger" data-toggle="modal" onclick="GetEditModal('EditProd', '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(data)).ToString()')" data-target="#myModal" value="แก้ไข" />*@
-                </td>
-            </tr>
+                    <td align="center">
+                        <input type="button" class="btn btn-danger" data-toggle="modal" onclick="GetEditModal('EditProd', '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(data)).ToString().Replace("\"", "dbq")')" data-target="#myModal" value="แก้ไข" />
+                        @*<input type="button" class="btn btn-danger" data-toggle="modal" onclick="GetEditModal('EditProd', '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(data)).ToString()')" data-target="#myModal" value="แก้ไข" />*@
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
@@ -90,7 +102,7 @@
 </div>
 <script>
 
-    function SaveData(_mode) {
+      function SaveData(_mode) {
 
         switch (_mode) {
             case 'AddItem':
@@ -162,33 +174,27 @@
     }
 
 
-    function GetEditModal(_mode, _value) {
+
+      function GetEditModal(_mode, _value) {
 
 
         var _model;
         var modal = document.getElementById("myModal");
         var divModalTitle = $('#modaltitle');
         var divModalBody = $('#modalbody');
-      
-    
+
+          debugger;
 
 
         var str = _value.replace(/dbq/g, '"');
         str = str.replace(/(?:\r\n|\r|\n)/g, ' ');
-   
+
         if (_value != '') {
 
         _model = JSON.parse(str);
         }
 
 
-   
-        debugger;
-
-      
-
-       
-        debugger;
 
         var btnSaveConfig = $('#btnSaveConfig');
 
@@ -204,12 +210,38 @@
 
 
 
-                html =  `  @{
+                html =  `
 
-                @Html.Partial("_ListTemp")
+<div class="row">
+    <div class="col">
+        <input id="AccName" class="form-control" placeholder="Acc Name" hidden value="@user.AccName" />
 
 
+
+
+            <input id="ProdName" class="form-control" placeholder="Product Name"/>
+
+
+            <br />
+            <textarea id="ProdRemark" class="form-control" placeholder="Description"></textarea><br />
+            <input class="form-control-file" id="FromFile" type="file" multiple />
+        </div>
+        <div class="col">
+
+            <input id="Price" class="form-control" placeholder="Price" /> <br />
+            <input id="ProdUnit" class="form-control" placeholder="Number" /> <br />
+            <select id="ProdUnitType" class="form-select" aria-label="Default select example">
+
+                @foreach (var data in ViewBag.UnitData)
+            {
+                <option value="@data.Id">@data.Amount</option>
             }
+            </select>
+            <br>
+        </div>
+    </div>
+
+
 
 `
 
@@ -221,15 +253,38 @@
 
 
                 html = `
-<a>`+ _model.tblProduct.ProdName +`</a>
 
-@{
-
-
-                @Html.Partial("EditProd");
+<div class="row">
+    <div class="col">
+        <input id="AccName" class="form-control" placeholder="Acc Name" hidden value="@user.AccName" />
 
 
+
+
+            <input id="ProdName" class="form-control" value="`+ _model.tblProduct.ProdName +`" placeholder="Product Name"/>
+
+
+            <br />
+            <textarea id="ProdRemark" class="form-control"  value="`+ _model.tblProduct.ProdRemark +`" placeholder="Description"></textarea><br />
+          
+        </div>
+        <div class="col">
+
+            <input id="Price" class="form-control"  value="`+ _model.tblProduct.Price +`" placeholder="Price" /> <br />
+            <input id="ProdUnit" class="form-control"  value="`+ _model.tblProduct.ProdUnit +`" placeholder="Number" /> <br />
+            <select id="ProdUnitType" class="form-select" aria-label="Default select example" value="`+ _model.tblProduct.ProdUnitType +`">
+
+                @foreach (var data in ViewBag.UnitData)
+            {
+                <option value="@data.Id">@data.Amount</option>
             }
+            </select>
+            <br>
+        </div>
+    </div>
+
+
+
 
 `
 
@@ -238,4 +293,5 @@
         }
 
     }
+
 </script>

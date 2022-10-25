@@ -242,7 +242,7 @@ namespace cloudstky.Controllers
                         tblProdGalleries.Add(new TblProdGallery 
                         { 
                             ImageName = id.ToString() + ".png",
-                             ImagePath = webRootPath,
+                            ImagePath = "https://www.26jan89.com/StoreImage/" + file.AccName + "/",
                             ProdCode = tblProduct.ProdCode
 
                         });
