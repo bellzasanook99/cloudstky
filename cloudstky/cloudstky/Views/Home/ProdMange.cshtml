@@ -265,8 +265,8 @@
 
 
             <br />
-            <textarea id="ProdRemark" class="form-control"  value="`+ _model.tblProduct.ProdRemark +`" placeholder="Description"></textarea><br />
-          
+            <textarea id="ProdRemark" class="form-control"  placeholder="Description">`+ _model.tblProduct.ProdRemark +`</textarea><br />
+
         </div>
         <div class="col">
 
@@ -289,6 +289,10 @@
 `
 
                 divModalBody.html(html);
+
+                for (var i = 0; i < _model.tblProdGalleries.length; i++) {
+                    divModalBody.append("<a href=" + _model.tblProdGalleries[i].ImagePath + _model.tblProdGalleries[i].ImageName + " target='_blank'>" + _model.tblProdGalleries[i].ImagePath +_model.tblProdGalleries[i].ImageName + "</a><br/>");
+                }
                 break;
         }
 
